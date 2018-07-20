@@ -8,6 +8,8 @@ import android.webkit.WebViewClient
 import android.widget.FrameLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
+val FOCUS_UA = "Mozilla/5.0 (Linux; Android 8.1.0) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Focus/5.2 Chrome/67.0.3396.87 Mobile Safari/537.36"
+
 class MainActivity : AppCompatActivity() {
     lateinit var videoContainer: FrameLayout
 
@@ -37,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             javaScriptEnabled = true
             domStorageEnabled = true
             mediaPlaybackRequiresUserGesture = false
+            userAgentString = FOCUS_UA
         }
 
         webView.loadUrl("https://m.youtube.com/")
