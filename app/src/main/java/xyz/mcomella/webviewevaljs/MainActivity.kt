@@ -1,15 +1,15 @@
 package xyz.mcomella.webviewevaljs
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.KeyEvent
-import android.webkit.JavascriptInterface
+import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.concurrent.thread
+import kotlinx.android.synthetic.main.activity_main.view.*
+import org.mozilla.tv.firefox.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,11 +17,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        WebView.setWebContentsDebuggingEnabled(true)
+
         webView.webViewClient = object : WebViewClient() {
         }
 
         webView.webChromeClient = object : WebChromeClient() {
+            override fun onShowCustomView(view: View?, callback: CustomViewCallback?) {
+                super.onShowCustomView(view, callback)
+                fullscreenContainer.addView(view)
+            }
 
+            override fun onHideCustomView() {
+                super.onHideCustomView()
+                fullscreenContainer.removeAllViews()
+            }
         }
 
         webView.settings.apply {
@@ -30,6 +40,13 @@ class MainActivity : AppCompatActivity() {
             mediaPlaybackRequiresUserGesture = false
         }
 
-        webView.loadUrl("https://m.youtube.com/")
+        webView.loadUrl("https://developer.jwplayer.com/tools/stream-tester/?playerversion=8")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        parentContainer.visibility = View.VISIBLE
+        parentContainer.visibility = View.GONE
+        Log.e("lol", "${parentContainer.visibility == View.GONE} ${child.visibility == View.GONE}")
     }
 }
