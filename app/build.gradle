@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "xyz.mcomella.webviewevaljs"
+        applicationId "org.mozilla.tv.firefox"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
