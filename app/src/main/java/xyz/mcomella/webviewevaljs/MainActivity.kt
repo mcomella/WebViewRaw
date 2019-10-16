@@ -42,6 +42,6 @@ class MainActivity : AppCompatActivity() {
             userAgentString = FOCUS_UA
         }
 
-        webView.loadUrl("https://m.youtube.com/")
+        webView.loadUrl("https://jsfiddle.net/charkes/tpq493gx/2/")
     }
 }
